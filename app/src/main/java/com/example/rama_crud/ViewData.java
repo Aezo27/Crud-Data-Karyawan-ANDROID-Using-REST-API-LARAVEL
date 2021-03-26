@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.rama_crud.apihelper.BaseApiService;
 import com.example.rama_crud.apihelper.Client;
@@ -16,6 +17,7 @@ import com.example.rama_crud.apihelper.Client;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,7 +77,8 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-
+                loading.dismiss();
+                Toast.makeText(ViewData.this, "Gagal", Toast.LENGTH_SHORT).show();
             }
         });
     }

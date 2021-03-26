@@ -21,6 +21,8 @@ public interface BaseApiService {
                                    @Field("nip") String nip,
                                    @Field("alamat") String alamat
     );
+//    @GET("data")
+//    Call<Model> getKaryawan();
     @GET("data")
     Call<Model> getKaryawan();
 }
