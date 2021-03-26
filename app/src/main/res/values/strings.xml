@@ -6,6 +6,7 @@
     <string name="jenis_kelamin">Jenis Kelamin</string>
     <string name="divisi">Divisi</string>
     <string name="btnTambah">Tambahkan</string>
+    <string name="btnData">Lihat Data</string>
     <string name="edit">Edit</string>
     <string name="delete">Hapus</string>
     <string name="error">Kesalahan Jaringan</string>
