@@ -10,9 +10,9 @@ import retrofit2.http.PUT;
 public interface BaseApiService {
     // Fungsi ini untuk memanggil API http://10.0.2.2:8000/api/tambah-data (localhost)
     @FormUrlEncoded
-    @POST("/tambah-data")
-    Call<ResponseBody> addKaryawan(@Field("txtNama") String nama,
-                                   @Field("txtNIP") String nip,
-                                   @Field("txtAlamat") String alamat
+    @POST("tambah-data")
+    Call<ResponseBody> addKaryawan(@Field("nama") String nama,
+                                   @Field("nip") String nip,
+                                   @Field("alamat") String alamat
     );
 }
