@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/judulForm"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text="@string/app_name"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/txtNama"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nama"
+            android:autofillHints=""
+            android:inputType="text"></EditText>
+
+        <EditText
+            android:id="@+id/txtNIP"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nip"
+            android:inputType="text"
+            android:autofillHints=""></EditText>
+
+        <EditText
+            android:id="@+id/txtAlamat"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/alamat"
+            android:inputType="text"
+            android:importantForAutofill="no"></EditText>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnTambah"></Button>
+
+    </LinearLayout>
+</ScrollView>
