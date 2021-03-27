@@ -36,12 +36,6 @@ public class ViewKaryawan extends AppCompatActivity {
         setContentView(R.layout.activity_view_karyawan);
 
         initView();
-        public boolean onKeyDown(int keyCode, KeyEvent event) {
-            if (keyCode == android.view.KeyEvent.KEYCODE_BACK ) {
-                viewData();
-            }
-            return super.onKeyDown(keyCode, event);
-        }
 
         // The callback can be enabled or disabled here or in handleOnBackPressed()
 
@@ -58,6 +52,13 @@ public class ViewKaryawan extends AppCompatActivity {
                 showAlert();
             }
         });
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK ) {
+            viewData();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void kirimData() {

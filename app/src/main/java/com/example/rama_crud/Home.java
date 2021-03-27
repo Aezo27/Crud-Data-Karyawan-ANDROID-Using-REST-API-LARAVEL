@@ -42,7 +42,7 @@ public class Home extends AppCompatActivity {
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openView();
+                viewData();
             }
         });
     }
@@ -62,6 +62,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    viewData();
                     Toast.makeText(Home.this, "Berhasil", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -82,7 +83,7 @@ public class Home extends AppCompatActivity {
         btnView = (Button) findViewById(R.id.btnDelete);
     }
 
-    public void openView(){
+    public void viewData(){
         Intent intent = new Intent(this, ViewData.class);
         startActivity(intent);
     }

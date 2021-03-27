@@ -118,4 +118,8 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     };
+
+    public void loading() {
+        
+    }
 }
