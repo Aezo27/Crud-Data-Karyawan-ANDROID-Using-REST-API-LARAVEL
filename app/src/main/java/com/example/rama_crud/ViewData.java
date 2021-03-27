@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ViewData extends AppCompatActivity implements ListView.OnItemClickListener {
 
     //deklarasi varibel untuk mengirim data ke activity lain
-    public static final String id = "id";
+    public static final String _id = "id";
     public static final String nama = "nama";
     public static final String nip = "nip";
     public static final String alamat = "alamat";
@@ -36,8 +36,7 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
     public static final String divisi = "divisi";
     //listview untuk menampilkan data
     private ListView listView;
-    //varibel books bertipe List dan List tersebut berdasarkan objek Listbuku
-//    private List<ListKaryawan> karyawan;
+    private List<ListKaryawan> dataKaryawan;
 
 
     @Override
@@ -51,7 +50,7 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
         getBuku();
 
         //setting onItemClickListener untuk listview
-//        listview.setOnItemClickListener(this);
+        listView.setOnItemClickListener(this);
 
 
     }
@@ -68,7 +67,7 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
             public void onResponse(Call<List<ListKaryawan>> call, Response<List<ListKaryawan>> response) {
                 loading.dismiss();
                 List<ListKaryawan> karyawan = response.body();
-//                    showList();
+                dataKaryawan = karyawan;
                 //String array untuk menyimpan nama semua nama buku
                 String[] items = new String[karyawan.size()];
 
@@ -93,17 +92,16 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //membuat intent
-//        Intent intent = new Intent(this, LihatDetailBuku.class);
-//        //mengambil buku dari list
-//        Listbuku listbuku = books.get(position);
-//        //menambahkan detail buku untuk intent
-//        intent.putExtra(ID_BUKU, listbuku.getIdbuku());
-//        intent.putExtra(NAMA_BUKU, listbuku.getNama());
-//        intent.putExtra(HARGA_BUKU, listbuku.getHarga());
-//        intent.putExtra(STATUS_BUKU, listbuku.getStatus());
+        Intent intent = new Intent(this, ViewKaryawan.class);
+        //mengambil data karywan dari list
+        ListKaryawan karyawan = dataKaryawan.get(position);
+        //menambahkan detail karyawan untuk intent
+        intent.putExtra(_id, karyawan.getId());
+        intent.putExtra(nama, karyawan.getNama());
+        intent.putExtra(nip, karyawan.getNip());
+        intent.putExtra(alamat, karyawan.getAlamat());
 //
 //        //memulai activity lain untuk menampilkan detail buku
-//        startActivity(intent);
-
+        startActivity(intent);
     }
 }

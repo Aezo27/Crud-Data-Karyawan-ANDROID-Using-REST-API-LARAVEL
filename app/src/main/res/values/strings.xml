@@ -7,8 +7,8 @@
     <string name="divisi">Divisi</string>
     <string name="btnTambah">Tambahkan</string>
     <string name="btnData">Lihat Data</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Hapus</string>
+    <string name="btnEdit">Edit</string>
+    <string name="btnDelete">Hapus</string>
     <string name="error">Kesalahan Jaringan</string>
     <string-array name="daftar_divisi">
         <item>Programmer</item>

@@ -94,8 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:text="@string/btnTambah"
+            android:background="#11DA03"
+            android:text="@string/btnEdit"
             android:textColor="@android:color/background_light" />
 
         <Button
@@ -104,8 +104,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:text="@string/btnData"
+            android:background="#DA0303"
+            android:text="@string/btnDelete"
             android:textColor="@android:color/background_light" />
     </LinearLayout>
 

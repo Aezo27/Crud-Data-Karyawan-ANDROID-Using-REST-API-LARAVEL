@@ -2,6 +2,8 @@ package com.example.rama_crud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,32 +19,33 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Home extends AppCompatActivity {
+public class ViewKaryawan extends AppCompatActivity {
+
 
     private EditText txtNama;
     private EditText txtNIP;
     private EditText txtAlamat;
-    private Button btnTambah;
-    private Button btnView;
+    private Button btnEdit;
+    private Button btnDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data);
+        setContentView(R.layout.activity_view_karyawan);
 
         initView();
 
-        btnTambah.setOnClickListener(new View.OnClickListener() {
+        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 kirimData();
             }
         });
 
-        btnView.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openView();
+                showAlert();
             }
         });
     }
@@ -62,13 +65,13 @@ public class Home extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(Home.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewKaryawan.this, "Berhasil", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(Home.this, "Gagal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewKaryawan.this, "Gagal", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -78,12 +81,35 @@ public class Home extends AppCompatActivity {
         txtNama = (EditText) findViewById(R.id.txtNama);
         txtNIP = (EditText) findViewById(R.id.txtNIP);
         txtAlamat = (EditText) findViewById(R.id.txtAlamat);
-        btnTambah = (Button) findViewById(R.id.btnSubmit);
-        btnView = (Button) findViewById(R.id.btnDelete);
+        btnEdit = (Button) findViewById(R.id.btnSubmit);
+        btnDelete = (Button) findViewById(R.id.btnDelete);
+
+        Intent intent = getIntent();
+        //Menampilkan nilai hasil parsing dari intent
+//        txtNama.setText("ID : "+String.valueOf(intent.getIntExtra(MainActivity.ID_BUKU,0)));
+        txtNama.setText(intent.getStringExtra(ViewData.nama));
+        txtAlamat.setText(intent.getStringExtra(ViewData.alamat));
+        txtNIP.setText(intent.getStringExtra(ViewData.nip));
     }
 
-    public void openView(){
-        Intent intent = new Intent(this, ViewData.class);
-        startActivity(intent);
+    public void showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Apakah anda yakin?");
+        builder.setMessage("Data yang dihapus tidak dapat dikembalikan!");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
