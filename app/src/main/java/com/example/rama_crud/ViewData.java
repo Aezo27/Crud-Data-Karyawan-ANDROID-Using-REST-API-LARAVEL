@@ -3,8 +3,10 @@ package com.example.rama_crud;
 import android.app.ProgressDialog;
 import android.content.Intent;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -53,6 +55,13 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
         listView.setOnItemClickListener(this);
 
 
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) {
+            viewHome();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void getBuku() {
@@ -104,4 +113,9 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
 //        //memulai activity lain untuk menampilkan detail buku
         startActivity(intent);
     }
+
+    public void viewHome(){
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    };
 }

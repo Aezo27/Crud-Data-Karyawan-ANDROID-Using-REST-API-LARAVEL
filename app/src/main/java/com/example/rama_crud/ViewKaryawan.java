@@ -1,11 +1,13 @@
 package com.example.rama_crud;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,14 @@ public class ViewKaryawan extends AppCompatActivity {
         setContentView(R.layout.activity_view_karyawan);
 
         initView();
+        public boolean onKeyDown(int keyCode, KeyEvent event) {
+            if (keyCode == android.view.KeyEvent.KEYCODE_BACK ) {
+                viewData();
+            }
+            return super.onKeyDown(keyCode, event);
+        }
+
+        // The callback can be enabled or disabled here or in handleOnBackPressed()
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
