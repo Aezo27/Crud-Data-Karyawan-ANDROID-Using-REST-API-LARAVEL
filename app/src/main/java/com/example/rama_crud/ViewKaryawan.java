@@ -51,12 +51,15 @@ public class ViewKaryawan extends AppCompatActivity {
     }
 
     private void kirimData() {
+        Intent intent = getIntent();
+        String id = intent.getStringExtra(ViewData._id);
         String nama = txtNama.getText().toString().trim();
         String nip = txtNIP.getText().toString().trim();
         String alamat = txtAlamat.getText().toString().trim();
 
         BaseApiService apiService = Client.getInstanceRetrofit();
-        Call<ResponseBody> call = apiService.addKaryawan(
+        Call<ResponseBody> call = apiService.updateKaryawan(
+                id,
                 nama,
                 nip,
                 alamat
@@ -65,6 +68,7 @@ public class ViewKaryawan extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    viewData();
                     Toast.makeText(ViewKaryawan.this, "Berhasil", Toast.LENGTH_SHORT).show();
                 }
             }
