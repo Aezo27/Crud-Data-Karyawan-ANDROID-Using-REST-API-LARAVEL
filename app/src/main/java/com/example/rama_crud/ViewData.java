@@ -35,17 +35,17 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
     public static final String jenis_kelamin = "jenis_kelamin";
     public static final String divisi = "divisi";
     //listview untuk menampilkan data
-    private ListView listview;
+    private ListView listView;
     //varibel books bertipe List dan List tersebut berdasarkan objek Listbuku
-    private List<ListKaryawan> karyawan;
+//    private List<ListKaryawan> karyawan;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view_data);
         //inisialisasi listview
-        listview = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
 
         //memanggil method untuk mengambil data buku
         getBuku();
@@ -62,40 +62,31 @@ public class ViewData extends AppCompatActivity implements ListView.OnItemClickL
 
         BaseApiService apiService = Client.getInstanceRetrofit();
 
-        Call<Model> call = apiService.getKaryawan();
-        call.enqueue(new Callback<Model>() {  //Asyncronous Request
+        Call<List<ListKaryawan>> call = apiService.getKaryawan();
+        call.enqueue(new Callback<List<ListKaryawan>>() {
             @Override
-            public void onResponse(Call<Model> call, Response<Model> response) {
+            public void onResponse(Call<List<ListKaryawan>> call, Response<List<ListKaryawan>> response) {
                 loading.dismiss();
-                List<ListKaryawan> karyawan = response.body().getListKaryawan();
+                List<ListKaryawan> karyawan = response.body();
+//                    showList();
+                //String array untuk menyimpan nama semua nama buku
+                String[] items = new String[karyawan.size()];
 
-                //memasukkan data dari varibel buku ke books
-                karyawan = karyawan;
-                //memanggil method untuk menampilkan list
-                showList();
+                for (int i = 0; i < karyawan.size(); i++) {
+                    items[i] = karyawan.get(i).getNama();
+                }
+                //Membuat Array Adapter for listview
+                ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, items);
+
+                //setting adapter untuk listview
+                listView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<Model> call, Throwable t) {
-                loading.dismiss();
+            public void onFailure(Call<List<ListKaryawan>> call, Throwable t) {
                 Toast.makeText(ViewData.this, "Gagal", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void showList() {
-        //String array untuk menyimpan nama semua nama buku
-        String[] items = new String[karyawan.size()];
-
-        for (int i = 0; i < karyawan.size(); i++) {
-            items[i] = karyawan.get(i).getNama();
-        }
-        //Membuat Array Adapter for listview
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_list_item, items);
-
-        //setting adapter untuk listview
-        listview.setAdapter(adapter);
-
     }
 
     //method ini akan dieksekusi ketikan listitem diklik

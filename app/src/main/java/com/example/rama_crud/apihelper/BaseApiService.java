@@ -1,7 +1,6 @@
 package com.example.rama_crud.apihelper;
 
-import com.example.rama_crud.Model;
-import com.example.rama_crud.ViewData;
+import com.example.rama_crud.ListKaryawan;
 
 import java.util.List;
 
@@ -11,7 +10,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 
 public interface BaseApiService {
     // Fungsi ini untuk memanggil API http://10.0.2.2:8000/api/tambah-data (localhost)
@@ -24,5 +22,5 @@ public interface BaseApiService {
 //    @GET("data")
 //    Call<Model> getKaryawan();
     @GET("data")
-    Call<Model> getKaryawan();
+    Call<List<ListKaryawan>> getKaryawan();
 }
