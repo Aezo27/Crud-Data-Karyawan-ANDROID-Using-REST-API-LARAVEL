@@ -6,6 +6,7 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -19,8 +20,9 @@ public interface BaseApiService {
                                    @Field("nip") String nip,
                                    @Field("alamat") String alamat
     );
-//    @GET("data")
-//    Call<Model> getKaryawan();
     @GET("data")
     Call<List<ListKaryawan>> getKaryawan();
+    @FormUrlEncoded
+    @POST("hapus-data")
+    Call<ResponseBody> deleteKaryawan(@Field("id") String id);
 }

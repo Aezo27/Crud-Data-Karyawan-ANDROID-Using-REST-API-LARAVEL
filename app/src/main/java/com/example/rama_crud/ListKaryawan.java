@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ListKaryawan {
 
-    private int id;
+    private String id;
     private String nama;
     private String nip;
     private String alamat;
@@ -13,7 +13,7 @@ public class ListKaryawan {
     private String divisi;
 
 
-    public ListKaryawan(int id,String nama, String nip, String alamat, String jenis_kelamin, String divisi) {
+    public ListKaryawan(String id,String nama, String nip, String alamat, String jenis_kelamin, String divisi) {
         this.id = id;
         this.nama = nama;
         this.nip = nip;
@@ -21,10 +21,10 @@ public class ListKaryawan {
         this.jenis_kelamin = jenis_kelamin;
         this.divisi = divisi;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

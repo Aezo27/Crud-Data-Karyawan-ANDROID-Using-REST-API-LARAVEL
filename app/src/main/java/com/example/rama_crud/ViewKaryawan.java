@@ -101,6 +101,7 @@ public class ViewKaryawan extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        deleteData();
                     }
                 });
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -111,5 +112,32 @@ public class ViewKaryawan extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+    public void viewData(){
+        Intent intent = new Intent(this, ViewData.class);
+        startActivity(intent);
+    };
+
+    public void deleteData(){
+        Intent intent = getIntent();
+        String id = intent.getStringExtra(ViewData._id);
+        BaseApiService apiService = Client.getInstanceRetrofit();
+        Call<ResponseBody> call = apiService.deleteKaryawan(
+                id
+        );
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    viewData();
+                    Toast.makeText(ViewKaryawan.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(ViewKaryawan.this, "Data gagal dihapus", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
